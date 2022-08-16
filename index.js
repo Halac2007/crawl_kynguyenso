@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 
 app.get('/', async (req, res) => {
-  got('https://kynguyenso.plo.vn/ky-nguyen-so/nhip-cong-nghe/')
+  got('https://kynguyenso.plo.vn/ky-nguyen-so/')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
@@ -37,7 +37,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/nhip-cong-nghe', async (req, res) => {
-  got('https://kynguyenso.plo.vn/ky-nguyen-so/')
+  got('https://kynguyenso.plo.vn/ky-nguyen-so/nhip-cong-nghe')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
@@ -127,6 +127,36 @@ app.get('/tuyet-chieu', async (req, res) => {
 
 app.get('/kinh-doanh-online', async (req, res) => {
   got('https://kynguyenso.plo.vn/ky-nguyen-so/kinhdoanhonline/')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.story', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('a').attr('title')
+        const link = $(this).find('a').attr('href')
+        const imageTop = $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          'https://photo-cms-plo.zadn.vn/600x360/Uploaded/2022/pwvotwiv/2022_05_30/4-dad4-451.jpg'
+        const time = $(this).find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+          imageTop,
+          image,
+          time,
+        })
+      })
+      res.json(articles)
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+
+app.get('/cong-nghe-40', async (req, res) => {
+  got('https://kynguyenso.plo.vn/ky-nguyen-so/cong-nghe/')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
