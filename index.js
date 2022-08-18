@@ -16,7 +16,10 @@ app.get('/', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
 
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
@@ -45,7 +48,10 @@ app.get('/nhip-cong-nghe', async (req, res) => {
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
 
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -71,7 +77,10 @@ app.get('/thiet-bi-so', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -98,7 +107,10 @@ app.get('/tuyet-chieu', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -127,7 +139,10 @@ app.get('/kinh-doanh-online', async (req, res) => {
         const link = $(this).find('a').attr('href')
         // const imageTop = $(this).find('a').find('img').attr('src')
 
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -154,7 +169,10 @@ app.get('/cong-nghe-40', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -182,7 +200,10 @@ app.get('/an-sach-song-khoe', async (req, res) => {
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
 
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -209,7 +230,10 @@ app.get('/xe-va-luat', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const image =
+          $(this).find('a').find('img').attr('data-src') ||
+          $(this).find('a').find('img').attr('src') ||
+          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
