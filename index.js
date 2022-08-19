@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio'
 import express from 'express'
 import cors from 'cors'
 import { got } from 'got'
-
+import axios from 'axios'
 const app = express()
 app.use(cors())
 
@@ -16,10 +16,7 @@ app.get('/', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
 
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
@@ -48,10 +45,7 @@ app.get('/nhip-cong-nghe', async (req, res) => {
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
 
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -77,10 +71,7 @@ app.get('/thiet-bi-so', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -107,10 +98,7 @@ app.get('/tuyet-chieu', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -139,10 +127,7 @@ app.get('/kinh-doanh-online', async (req, res) => {
         const link = $(this).find('a').attr('href')
         // const imageTop = $(this).find('a').find('img').attr('src')
 
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -169,10 +154,7 @@ app.get('/cong-nghe-40', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -200,10 +182,7 @@ app.get('/an-sach-song-khoe', async (req, res) => {
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
 
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -230,10 +209,7 @@ app.get('/xe-va-luat', async (req, res) => {
         // const title = $(this).text().trim()
         const title = $(this).find('a').attr('title')
         const link = $(this).find('a').attr('href')
-        const image =
-          $(this).find('a').find('img').attr('data-src') ||
-          $(this).find('a').find('img').attr('src') ||
-          'https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivycwk/2022_06_10/p12-anhghep-8512.jpg'
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
         const time = $(this).find('.story__time').text().trim() || ' '
         articles.push({
           title,
@@ -243,12 +219,37 @@ app.get('/xe-va-luat', async (req, res) => {
           time,
         })
       })
+
       res.json(articles)
     })
     .catch((err) => {
       console.log('Error: ', err.message)
     })
 })
+
+/*-----------------gộp data------------------------*/
+
+app.get('/tong-hop', async (req, res) => {
+  const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
+  const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
+  const res4 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
+
+  const arr2 = respRepos.data.slice(0, 1)
+  const arr3 = res3.data.slice(1, 3)
+  const arr4 = res4.data.slice(1, 3)
+  const arrNews = [...arr2, ...arr3, ...arr4]
+  res.send(arrNews)
+})
+
+// app.get('/tin-noi-bat', async (req, res) => {
+//   const respGlobal = await axios(`https://kynguyenso.herokuapp.com/`)
+//   const respRepos = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat`)
+//   const arr1 = respGlobal.data.slice(0, 4)
+// //   const arr2 = respRepos.data.slice(8, 10)
+// //   const arr3 = [...arr1, ...arr2]
+
+// //   res.json(arr3)
+// })
 
 const port = process.env.PORT || 4000
 app.listen(port, () => {
