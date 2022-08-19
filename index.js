@@ -247,6 +247,27 @@ app.get('/tong-hop', async (req, res) => {
   res.send(arrNews)
 })
 
+/*-------------------------*/
+
+app.get('/ky-nguyen-so', async (req, res) => {
+  const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
+  const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
+  const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
+  const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
+  const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
+  const res5 = await axios(`https://kynguyenso.herokuapp.com/`)
+
+  const arr1 = respRepos.data.slice(0, 4)
+  const arr2 = res1.data.slice(0, 4)
+  const arr3 = res2.data.slice(0, 4)
+  const arr4 = res3.data.slice(0, 4)
+  const arr5 = res4.data.slice(0, 4)
+  const arr = res5.data.slice(0, 4)
+
+  const arrNews = [...arr, ...arr1, ...arr2, ...arr3, ...arr4, ...arr5]
+  res.send(arrNews)
+})
+
 // app.get('/tin-noi-bat', async (req, res) => {
 //   const respGlobal = await axios(`https://kynguyenso.herokuapp.com/`)
 //   const respRepos = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat`)
