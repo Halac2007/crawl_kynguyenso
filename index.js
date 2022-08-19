@@ -22,7 +22,6 @@ app.get('/', async (req, res) => {
         articles.push({
           title,
           link,
-
           image,
           time,
         })
@@ -231,13 +230,18 @@ app.get('/xe-va-luat', async (req, res) => {
 
 app.get('/tong-hop', async (req, res) => {
   const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
+  const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
+  const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
   const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
-  const res4 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
+  const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
 
-  const arr2 = respRepos.data.slice(0, 1)
-  const arr3 = res3.data.slice(1, 3)
-  const arr4 = res4.data.slice(1, 3)
-  const arrNews = [...arr2, ...arr3, ...arr4]
+  const arr1 = respRepos.data.slice(0, 15)
+  const arr2 = res1.data.slice(0, 15)
+  const arr3 = res2.data.slice(0, 15)
+  const arr4 = res3.data.slice(0, 15)
+  const arr5 = res4.data.slice(0, 15)
+
+  const arrNews = [...arr1, ...arr2, ...arr3, ...arr4, ...arr5]
   res.send(arrNews)
 })
 
