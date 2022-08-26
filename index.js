@@ -284,7 +284,7 @@ app.get('/page/an-sach-song-khoe', async (req, res) => {
 
 /*------------------*/
 
-app.get('page/xe-va-luat', async (req, res) => {
+app.get('/page/xe-va-luat', async (req, res) => {
   got('https://plo.vn/xe-va-luat/?trang=2')
     .then((response) => {
       const html = response.body
