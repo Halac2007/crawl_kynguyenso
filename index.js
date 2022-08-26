@@ -254,7 +254,7 @@ app.get('/xe-va-luat', async (req, res) => {
 
 /*-------------phân trang-------------------------*/
 
-app.get('/an-sach-song-khoe/page1', async (req, res) => {
+app.get('/page/an-sach-song-khoe', async (req, res) => {
   got('https://plo.vn/an-sach-song-khoe/?trang=2')
     .then((response) => {
       const html = response.body
@@ -284,7 +284,7 @@ app.get('/an-sach-song-khoe/page1', async (req, res) => {
 
 /*------------------*/
 
-app.get('/xe-va-luat/page1', async (req, res) => {
+app.get('page/xe-va-luat', async (req, res) => {
   got('https://plo.vn/xe-va-luat/?trang=2')
     .then((response) => {
       const html = response.body
@@ -314,7 +314,7 @@ app.get('/xe-va-luat/page1', async (req, res) => {
 
 /*-----------phân trang page 1------------*/
 
-app.get('/ky-nguyen-so/page1', async (req, res) => {
+app.get('/page/ky-nguyen-so', async (req, res) => {
   const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
   const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
   const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
