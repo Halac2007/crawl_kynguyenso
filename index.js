@@ -33,6 +33,33 @@ app.get('/', async (req, res) => {
     })
 })
 
+app.get('/ky-nguyen-so', async (req, res) => {
+  got('https://kynguyenso.plo.vn/')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.rank-1', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('.story').find('a').attr('title')
+        const link = $(this).find('.story').find('a').attr('href')
+        const image = $(this).find('.story').find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+
+        const time = $(this).find('.story').find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+          image,
+          time,
+        })
+      })
+      res.json(articles)
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+
 app.get('/nhip-cong-nghe', async (req, res) => {
   got('https://kynguyenso.plo.vn/ky-nguyen-so/nhip-cong-nghe/')
     .then((response) => {
