@@ -369,6 +369,38 @@ app.get('/page/ky-nguyen-so', async (req, res) => {
     })
 })
 
+//lay ky nguyen so plo
+
+/*-----------phân trang page 1------------*/
+
+app.get('/page/ky-nguyen-so/home', async (req, res) => {
+  got('https://plo.vn/')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.story', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('a').attr('title')
+        const link = $(this).find('a').attr('href')
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const time = $(this).find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+
+          image,
+          time,
+        })
+      })
+      const newarr = articles.slice(Math.max(articles.length - 12))
+      res.json(newarr)
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+
 /*-----------------gộp data------------------------*/
 
 // app.get('/tong-hop', async (req, res) => {
