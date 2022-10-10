@@ -342,7 +342,7 @@ app.get('/page/xe-va-luat', async (req, res) => {
 /*-----------phân trang page 1------------*/
 
 app.get('/page/ky-nguyen-so', async (req, res) => {
-  got('https://kynguyenso.plo.vn/ky-nguyen-so/tuyet-chieu/')
+  got('https://kynguyenso.plo.vn/')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
@@ -403,25 +403,25 @@ app.get('/page/ky-nguyen-so/home', async (req, res) => {
 
 /*-----------------gộp data------------------------*/
 
-// app.get('/tong-hop', async (req, res) => {
-//   const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
-//   const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
-//   const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
-//   const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
-//   const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
-//   const res5 = await axios(`https://kynguyenso.herokuapp.com/`)
+app.get('/page/ky-nguyen-so/', async (req, res) => {
+  const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
+  const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
+  const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
+  const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
+  const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
+  const res5 = await axios(`https://kynguyenso.herokuapp.com/`)
 
-//   const arr1 = respRepos.data
-//   const arr2 = res1.data
-//   const arr3 = res2.data
-//   const arr4 = res3.data
-//   const arr5 = res4.data
-//   const arr = res5.data
+  const arr1 = respRepos.data
+  const arr2 = res1.data
+  const arr3 = res2.data
+  const arr4 = res3.data
+  const arr5 = res4.data
+  const arr = res5.data
 
-//   const arrNews = [...arr, ...arr1, ...arr2, ...arr3, ...arr4, ...arr5]
+  const arrNews = [...arr5, ...arr1, ...arr2, ...arr3, ...arr4, ...arr]
 
-//   res.send(arrNews)
-// })
+  res.send(arrNews)
+})
 
 // /*-------------------------*/
 
