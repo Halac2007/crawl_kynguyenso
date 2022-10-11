@@ -279,10 +279,78 @@ app.get('/xe-va-luat', async (req, res) => {
     })
 })
 
+// page 2
+
+app.get('/xe-va-luat/page2', async (req, res) => {
+  got('https://plo.vn/xe-va-luat/?trang=2')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.story', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('a').attr('title')
+        const link = $(this).find('a').attr('href')
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const time = $(this).find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+
+          image,
+          time,
+        })
+      })
+
+      const arrNew = articles.slice(4)
+
+      const arrNewC = arrNew.splice(15, 23)
+
+      const arrNewSpliceEnd = arrNew.splice(arrNewC)
+
+      const arrEnd = arrNewSpliceEnd.splice(19)
+
+      // const newarr = articles.splice(15, 27)
+      res.json(arrNewSpliceEnd.splice(arrEnd))
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+
 /*-------------phân trang-------------------------*/
 
 app.get('/page/an-sach-song-khoe', async (req, res) => {
   got('https://plo.vn/an-sach-song-khoe/?trang=2')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.story', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('a').attr('title')
+        const link = $(this).find('a').attr('href')
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const time = $(this).find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+
+          image,
+          time,
+        })
+      })
+
+      res.json(articles.slice(4))
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+//page 3
+
+app.get('/page3/an-sach-song-khoe', async (req, res) => {
+  got('https://plo.vn/an-sach-song-khoe/?trang=3')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
@@ -313,6 +381,36 @@ app.get('/page/an-sach-song-khoe', async (req, res) => {
 
 app.get('/page/xe-va-luat', async (req, res) => {
   got('https://plo.vn/xe-va-luat/?trang=2')
+    .then((response) => {
+      const html = response.body
+      const $ = cheerio.load(html)
+      const articles = []
+      $('.story', html).each(function () {
+        // const title = $(this).text().trim()
+        const title = $(this).find('a').attr('title')
+        const link = $(this).find('a').attr('href')
+        const image = $(this).find('a').find('img').attr('data-src') || $(this).find('a').find('img').attr('src')
+        const time = $(this).find('.story__time').text().trim() || ' '
+        articles.push({
+          title,
+          link,
+
+          image,
+          time,
+        })
+      })
+
+      res.json(articles.slice(4))
+    })
+    .catch((err) => {
+      console.log('Error: ', err.message)
+    })
+})
+
+/*------------------*/
+
+app.get('/page3/xe-va-luat', async (req, res) => {
+  got('https://plo.vn/xe-va-luat/?trang=3')
     .then((response) => {
       const html = response.body
       const $ = cheerio.load(html)
@@ -401,56 +499,72 @@ app.get('/page/ky-nguyen-so/home', async (req, res) => {
     })
 })
 
-/*-----------------gộp data------------------------*/
+/*-----------------gộp data KNS------------------------*/
 
-app.get('/page/ky-nguyen-so/', async (req, res) => {
+app.get('/page/ky-nguyen-so/random', async (req, res) => {
   const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
   const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
   const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
   const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
   const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
-  const res5 = await axios(`https://kynguyenso.herokuapp.com/`)
 
-  const arr1 = respRepos.data
-  const arr2 = res1.data
-  const arr3 = res2.data
-  const arr4 = res3.data
-  const arr5 = res4.data
-  const arr = res5.data
+  const nhipcongnghe = respRepos.data
+  const congnghe40 = res1.data
+  const tuyetchieu = res2.data
+  const thietbiso = res3.data
 
-  const arrNews = [...arr5, ...arr1, ...arr2, ...arr3, ...arr4, ...arr]
+  const kinhdoanh = res4.data
+  console.log(congnghe40)
+
+  const arrNews = [...nhipcongnghe, ...congnghe40, ...tuyetchieu, ...thietbiso, ...kinhdoanh]
 
   res.send(arrNews)
 })
 
+/*-----------------gộp data ASSK------------------------*/
+
+app.get('/page/an-sach-song-khoe/random', async (req, res) => {
+  const assk = await axios(`http://localhost:4000/an-sach-song-khoe`)
+  const res1 = await axios(`http://localhost:4000/page/an-sach-song-khoe`)
+
+  const res2 = await axios(`http://localhost:4000/page3/an-sach-song-khoe`)
+
+  const asskhome = assk.data
+  const asskpage2 = res1.data
+  const asskpage3 = res2.data
+
+  const newPage1 = asskpage2.splice(20)
+
+  const newPage2 = asskpage3.splice(20)
+
+  const arrNews = [...asskhome, ...asskpage2, ...asskpage3]
+
+  const arrSlice = arrNews.splice(1, 4)
+
+  res.send(arrNews)
+})
+
+/*-----------------gộp data xe------------------------*/
+
+app.get('/page/xe/random', async (req, res) => {
+  const page1 = await axios(`http://localhost:4000/xe-va-luat`)
+  const page2 = await axios(`http://localhost:4000/xe-va-luat/page2`)
+  const page3 = await axios(`http://localhost:4000/page3/xe-va-luat`)
+
+  const xepage1 = page1.data
+  const xepage2 = page2.data
+  const xepage3 = page3.data
+
+  const newPage1 = xepage2.splice(15)
+
+  const newPage3 = xepage3.splice(15)
+
+  const arrNews = [...xepage1, ...xepage2, ...xepage3]
+  const arrSlice = arrNews.splice(1, 4)
+  res.send(arrNews)
+})
+
 // /*-------------------------*/
-
-// app.get('/ky-nguyen-so', async (req, res) => {
-//   const respRepos = await axios(`https://kynguyenso.herokuapp.com/nhip-cong-nghe`)
-//   const res1 = await axios(`https://kynguyenso.herokuapp.com/cong-nghe-40`)
-//   const res2 = await axios(`https://kynguyenso.herokuapp.com/tuyet-chieu`)
-//   const res3 = await axios(`https://kynguyenso.herokuapp.com/thiet-bi-so`)
-//   const res4 = await axios(`https://kynguyenso.herokuapp.com/kinh-doanh-online`)
-
-//   const arr1 = respRepos.data
-//   const arr2 = res1.data
-//   const arr3 = res2.data
-//   const arr4 = res3.data
-//   const arr5 = res4.data
-
-//   const arrNews = [...arr1, ...arr2, ...arr3, ...arr4, ...arr5]
-//   res.send(arrNews)
-// })
-
-// app.get('/tin-noi-bat', async (req, res) => {
-//   const respGlobal = await axios(`https://kynguyenso.herokuapp.com/`)
-//   const respRepos = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat`)
-//   const arr1 = respGlobal.data
-//   const arr2 = respRepos.data
-//   const arr3 = [...arr1, ...arr2]
-
-//   res.json(arr3)
-// })
 
 const port = process.env.PORT || 4000
 app.listen(port, () => {
