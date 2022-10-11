@@ -546,7 +546,7 @@ app.get('/page/an-sach-song-khoe/random', async (req, res) => {
 
 /*-----------------gộp data xe------------------------*/
 
-app.get('/page/xe/random', async (req, res) => {
+app.get('/page/xe-va-luat/random', async (req, res) => {
   const page1 = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat`)
   const page2 = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat/page2`)
   const page3 = await axios(`https://kynguyenso.herokuapp.com/page3/xe-va-luat`)
