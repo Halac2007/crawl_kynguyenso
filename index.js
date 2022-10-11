@@ -524,10 +524,10 @@ app.get('/page/ky-nguyen-so/random', async (req, res) => {
 /*-----------------gộp data ASSK------------------------*/
 
 app.get('/page/an-sach-song-khoe/random', async (req, res) => {
-  const assk = await axios(`http://localhost:4000/an-sach-song-khoe`)
-  const res1 = await axios(`http://localhost:4000/page/an-sach-song-khoe`)
+  const assk = await axios(`https://kynguyenso.herokuapp.com/an-sach-song-khoe`)
+  const res1 = await axios(`https://kynguyenso.herokuapp.com/page/an-sach-song-khoe`)
 
-  const res2 = await axios(`http://localhost:4000/page3/an-sach-song-khoe`)
+  const res2 = await axios(`https://kynguyenso.herokuapp.com/page3/an-sach-song-khoe`)
 
   const asskhome = assk.data
   const asskpage2 = res1.data
@@ -547,9 +547,9 @@ app.get('/page/an-sach-song-khoe/random', async (req, res) => {
 /*-----------------gộp data xe------------------------*/
 
 app.get('/page/xe/random', async (req, res) => {
-  const page1 = await axios(`http://localhost:4000/xe-va-luat`)
-  const page2 = await axios(`http://localhost:4000/xe-va-luat/page2`)
-  const page3 = await axios(`http://localhost:4000/page3/xe-va-luat`)
+  const page1 = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat`)
+  const page2 = await axios(`https://kynguyenso.herokuapp.com/xe-va-luat/page2`)
+  const page3 = await axios(`https://kynguyenso.herokuapp.com/page3/xe-va-luat`)
 
   const xepage1 = page1.data
   const xepage2 = page2.data
